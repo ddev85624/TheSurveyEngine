@@ -1,0 +1,231 @@
+package com.teammatevoices.model;
+
+import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "PARTICIPANTS")
+public class Participant {
+
+    @Id
+    @Column(name = "PARTICIPANT_ID", length = 100)
+    private String participantId;
+
+    @Column(name = "FULL_NAME", nullable = false, length = 255)
+    private String fullName;
+
+    @Column(name = "EMAIL", nullable = false, unique = true, length = 255)
+    private String email;
+
+    @Column(name = "PARTICIPANT_TYPE", nullable = false, length = 30)
+    private String participantType;
+
+    @Column(name = "PROGRAM_ID")
+    private Long programId;
+
+    @Column(name = "TRAINING_PROGRAM", length = 255)
+    private String trainingProgram;
+
+    @Column(name = "COHORT", length = 100)
+    private String cohort;
+
+    @Column(name = "STANDARD_ID", length = 20)
+    private String standardId;
+
+    @Column(name = "MANAGER_NAME", length = 255)
+    private String managerName;
+
+    @Column(name = "HIERARCHY_CODE", length = 20)
+    private String hierarchyCode;
+
+    @Column(name = "START_DATE", nullable = false)
+    private LocalDate startDate;
+
+    @Column(name = "MID_POINT_DATE")
+    private LocalDate midPointDate;
+
+    @Column(name = "EXPECTED_END_DATE")
+    private LocalDate expectedEndDate;
+
+    @Column(name = "REGION", length = 100)
+    private String region;
+
+    @Column(name = "LINE_OF_BUSINESS", length = 100)
+    private String lineOfBusiness;
+
+    @Column(name = "IS_ACTIVE")
+    private Boolean isActive = true;
+
+    @CreationTimestamp
+    @Column(name = "CREATED_AT", updatable = false)
+    private LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    @Column(name = "UPDATED_AT")
+    private LocalDateTime updatedAt;
+
+    public Participant() {
+    }
+
+    public Participant(String participantId, String fullName, String email, String participantType, String trainingProgram, String cohort, LocalDate startDate, LocalDate expectedEndDate, Boolean isActive, LocalDateTime createdAt, LocalDateTime updatedAt) {
+        this.participantId = participantId;
+        this.fullName = fullName;
+        this.email = email;
+        this.participantType = participantType;
+        this.trainingProgram = trainingProgram;
+        this.cohort = cohort;
+        this.startDate = startDate;
+        this.expectedEndDate = expectedEndDate;
+        this.isActive = isActive;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
+    public String getParticipantId() {
+        return participantId;
+    }
+
+    public void setParticipantId(String participantId) {
+        this.participantId = participantId;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getParticipantType() {
+        return participantType;
+    }
+
+    public void setParticipantType(String participantType) {
+        this.participantType = participantType;
+    }
+
+    public String getTrainingProgram() {
+        return trainingProgram;
+    }
+
+    public void setTrainingProgram(String trainingProgram) {
+        this.trainingProgram = trainingProgram;
+    }
+
+    public String getCohort() {
+        return cohort;
+    }
+
+    public void setCohort(String cohort) {
+        this.cohort = cohort;
+    }
+
+    public String getStandardId() {
+        return standardId;
+    }
+
+    public void setStandardId(String standardId) {
+        this.standardId = standardId;
+    }
+
+    public String getManagerName() {
+        return managerName;
+    }
+
+    public void setManagerName(String managerName) {
+        this.managerName = managerName;
+    }
+
+    public String getHierarchyCode() {
+        return hierarchyCode;
+    }
+
+    public void setHierarchyCode(String hierarchyCode) {
+        this.hierarchyCode = hierarchyCode;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getMidPointDate() {
+        return midPointDate;
+    }
+
+    public void setMidPointDate(LocalDate midPointDate) {
+        this.midPointDate = midPointDate;
+    }
+
+    public LocalDate getExpectedEndDate() {
+        return expectedEndDate;
+    }
+
+    public void setExpectedEndDate(LocalDate expectedEndDate) {
+        this.expectedEndDate = expectedEndDate;
+    }
+
+    public Boolean getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public Long getProgramId() {
+        return programId;
+    }
+
+    public void setProgramId(Long programId) {
+        this.programId = programId;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public String getLineOfBusiness() {
+        return lineOfBusiness;
+    }
+
+    public void setLineOfBusiness(String lineOfBusiness) {
+        this.lineOfBusiness = lineOfBusiness;
+    }
+}
