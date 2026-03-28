@@ -1,0 +1,36 @@
+-- Idempotent user creation for Oracle Free Docker
+-- Creates both schema owner (TEAMMATE_VOICES) and app user (SURVEY_USER)
+-- Runs as SYS on first container initialization
+
+-- Switch to pluggable database where all app tables live
+ALTER SESSION SET CONTAINER = FREEPDB1;
+
+-- 1) Create TEAMMATE_VOICES user (schema owner for tables)
+DECLARE
+  v_count NUMBER;
+BEGIN
+  SELECT COUNT(*) INTO v_count FROM dba_users WHERE username = 'TEAMMATE_VOICES';
+  IF v_count = 0 THEN
+    EXECUTE IMMEDIATE 'CREATE USER TEAMMATE_VOICES IDENTIFIED BY teammate123';
+  ELSE
+    EXECUTE IMMEDIATE 'ALTER USER TEAMMATE_VOICES IDENTIFIED BY teammate123';
+  END IF;
+  EXECUTE IMMEDIATE 'GRANT CONNECT, RESOURCE, DBA TO TEAMMATE_VOICES';
+  EXECUTE IMMEDIATE 'GRANT UNLIMITED TABLESPACE TO TEAMMATE_VOICES';
+END;
+/
+
+-- 2) Create SURVEY_USER (app login used by Spring Boot backend)
+DECLARE
+  v_count NUMBER;
+BEGIN
+  SELECT COUNT(*) INTO v_count FROM dba_users WHERE username = 'SURVEY_USER';
+  IF v_count = 0 THEN
+    EXECUTE IMMEDIATE 'CREATE USER SURVEY_USER IDENTIFIED BY survey_pass123';
+  ELSE
+    EXECUTE IMMEDIATE 'ALTER USER SURVEY_USER IDENTIFIED BY survey_pass123';
+  END IF;
+  EXECUTE IMMEDIATE 'GRANT CONNECT, RESOURCE TO SURVEY_USER';
+  EXECUTE IMMEDIATE 'GRANT UNLIMITED TABLESPACE TO SURVEY_USER';
+END;
+/
