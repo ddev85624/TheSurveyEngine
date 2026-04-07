@@ -64,7 +64,7 @@ ARYA Design System/
 
 ### Option 1: Quick Start (Recommended)
 ```bash
-cd /Users/keyur/AI\ Projects/ARYA\ Design\ System
+cd /Users/AI\ Projects/ARYA\ Design\ System
 
 # Terminal 1: Database
 docker compose -f docker-compose.db.yml up -d
@@ -80,7 +80,7 @@ cd packages/empsurvey && npm run dev
 
 ### Option 2: Docker Compose
 ```bash
-cd /Users/keyur/AI\ Projects/ARYA\ Design\ System
+cd /Users/AI\ Projects/ARYA\ Design\ System
 docker compose up --build
 
 # Open: http://localhost:5174
@@ -272,4 +272,4 @@ We welcome contributions! Please see our contributing guidelines for more inform
 
 ## 📄 License
 
-MIT © ARYA Design System
+MIT © 
